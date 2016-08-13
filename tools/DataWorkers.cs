@@ -785,31 +785,4 @@ namespace tf3ed.tools
             }
         }
     }
-
-    static class MappingCompressor
-    {
-        public static byte[] DecompressData(byte[] data, int offset = 0)
-        {
-            int read_off = offset;
-
-            uint d0 = 0;
-            byte d2 = data[offset++];
-
-            if ((d2 & 0x80) == 0) return null;
-            
-            if (d2 != 0)
-            {
-                byte d3 = data[read_off++];
-                d0 = data.ReadLong(read_off); read_off += 4;
-                uint d4 = d0;
-
-                if ((d4 & 0x80000000) != 0)
-            }
-        }
-
-        public static byte[] CompressData(byte[] data)
-        {
-
-        }
-    }
 }

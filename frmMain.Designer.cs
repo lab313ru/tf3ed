@@ -40,24 +40,27 @@
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.tcMain = new System.Windows.Forms.TabControl();
             this.tpCompression = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tcCompression = new System.Windows.Forms.TabControl();
             this.tbLzh = new System.Windows.Forms.TabPage();
-            this.tbRle = new System.Windows.Forms.TabPage();
             this.lvLzh = new System.Windows.Forms.ListView();
-            this.chLzhDataOffset = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chLzhIndex = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chLzhTableAddr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chLzhDataOffset = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chLzhCmpSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chLzhDecSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chLzhTableAddr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tbRle = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dlgOpenRom = new System.Windows.Forms.OpenFileDialog();
             this.dlgSaveRom = new System.Windows.Forms.SaveFileDialog();
-            this.chLzhDestAddr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pnlLzhButtons = new System.Windows.Forms.TableLayoutPanel();
+            this.btnLzhImport = new System.Windows.Forms.Button();
+            this.btnLzhExtract = new System.Windows.Forms.Button();
             this.mnuMain.SuspendLayout();
             this.tcMain.SuspendLayout();
             this.tpCompression.SuspendLayout();
             this.tcCompression.SuspendLayout();
             this.tbLzh.SuspendLayout();
+            this.pnlLzhButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // mnuMain
@@ -140,7 +143,7 @@
             // mnuAbout
             // 
             this.mnuAbout.Name = "mnuAbout";
-            this.mnuAbout.Size = new System.Drawing.Size(152, 22);
+            this.mnuAbout.Size = new System.Drawing.Size(130, 22);
             this.mnuAbout.Text = "&About...";
             // 
             // tcMain
@@ -166,16 +169,6 @@
             this.tpCompression.Text = "Compression";
             this.tpCompression.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(192, 74);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
             // tcCompression
             // 
             this.tcCompression.Controls.Add(this.tbLzh);
@@ -191,6 +184,7 @@
             // tbLzh
             // 
             this.tbLzh.Controls.Add(this.lvLzh);
+            this.tbLzh.Controls.Add(this.pnlLzhButtons);
             this.tbLzh.Location = new System.Drawing.Point(4, 23);
             this.tbLzh.Name = "tbLzh";
             this.tbLzh.Padding = new System.Windows.Forms.Padding(3);
@@ -198,6 +192,57 @@
             this.tbLzh.TabIndex = 0;
             this.tbLzh.Text = "LZH";
             this.tbLzh.UseVisualStyleBackColor = true;
+            // 
+            // lvLzh
+            // 
+            this.lvLzh.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chLzhIndex,
+            this.chLzhTableAddr,
+            this.chLzhDataOffset,
+            this.chLzhCmpSize,
+            this.chLzhDecSize});
+            this.lvLzh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvLzh.FullRowSelect = true;
+            this.lvLzh.GridLines = true;
+            this.lvLzh.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvLzh.LabelWrap = false;
+            this.lvLzh.Location = new System.Drawing.Point(3, 35);
+            this.lvLzh.MultiSelect = false;
+            this.lvLzh.Name = "lvLzh";
+            this.lvLzh.ShowGroups = false;
+            this.lvLzh.Size = new System.Drawing.Size(815, 303);
+            this.lvLzh.TabIndex = 0;
+            this.lvLzh.UseCompatibleStateImageBehavior = false;
+            this.lvLzh.View = System.Windows.Forms.View.Details;
+            // 
+            // chLzhIndex
+            // 
+            this.chLzhIndex.Text = "#";
+            this.chLzhIndex.Width = 45;
+            // 
+            // chLzhTableAddr
+            // 
+            this.chLzhTableAddr.Text = "Table Address";
+            this.chLzhTableAddr.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.chLzhTableAddr.Width = 122;
+            // 
+            // chLzhDataOffset
+            // 
+            this.chLzhDataOffset.Text = "Data Offset";
+            this.chLzhDataOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.chLzhDataOffset.Width = 115;
+            // 
+            // chLzhCmpSize
+            // 
+            this.chLzhCmpSize.Text = "Archive Size";
+            this.chLzhCmpSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.chLzhCmpSize.Width = 130;
+            // 
+            // chLzhDecSize
+            // 
+            this.chLzhDecSize.Text = "Data Size";
+            this.chLzhDecSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.chLzhDecSize.Width = 110;
             // 
             // tbRle
             // 
@@ -209,57 +254,15 @@
             this.tbRle.Text = "RLE";
             this.tbRle.UseVisualStyleBackColor = true;
             // 
-            // lvLzh
+            // tabPage2
             // 
-            this.lvLzh.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.chLzhIndex,
-            this.chLzhTableAddr,
-            this.chLzhDataOffset,
-            this.chLzhCmpSize,
-            this.chLzhDecSize,
-            this.chLzhDestAddr});
-            this.lvLzh.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lvLzh.FullRowSelect = true;
-            this.lvLzh.GridLines = true;
-            this.lvLzh.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvLzh.LabelWrap = false;
-            this.lvLzh.Location = new System.Drawing.Point(3, 3);
-            this.lvLzh.MultiSelect = false;
-            this.lvLzh.Name = "lvLzh";
-            this.lvLzh.ShowGroups = false;
-            this.lvLzh.Size = new System.Drawing.Size(815, 335);
-            this.lvLzh.TabIndex = 0;
-            this.lvLzh.UseCompatibleStateImageBehavior = false;
-            this.lvLzh.View = System.Windows.Forms.View.Details;
-            // 
-            // chLzhDataOffset
-            // 
-            this.chLzhDataOffset.Text = "Data Offset";
-            this.chLzhDataOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chLzhDataOffset.Width = 115;
-            // 
-            // chLzhIndex
-            // 
-            this.chLzhIndex.Text = "#";
-            this.chLzhIndex.Width = 45;
-            // 
-            // chLzhCmpSize
-            // 
-            this.chLzhCmpSize.Text = "Archive Size";
-            this.chLzhCmpSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chLzhCmpSize.Width = 108;
-            // 
-            // chLzhDecSize
-            // 
-            this.chLzhDecSize.Text = "Data Size";
-            this.chLzhDecSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chLzhDecSize.Width = 110;
-            // 
-            // chLzhTableAddr
-            // 
-            this.chLzhTableAddr.Text = "Table Address";
-            this.chLzhTableAddr.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chLzhTableAddr.Width = 122;
+            this.tabPage2.Location = new System.Drawing.Point(4, 23);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(835, 374);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // dlgOpenRom
             // 
@@ -276,11 +279,51 @@
             this.dlgSaveRom.RestoreDirectory = true;
             this.dlgSaveRom.Title = "Where to save changed file?";
             // 
-            // chLzhDestAddr
+            // pnlLzhButtons
             // 
-            this.chLzhDestAddr.Text = "Vram Address";
-            this.chLzhDestAddr.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chLzhDestAddr.Width = 105;
+            this.pnlLzhButtons.AutoSize = true;
+            this.pnlLzhButtons.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlLzhButtons.ColumnCount = 2;
+            this.pnlLzhButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.pnlLzhButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.pnlLzhButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.pnlLzhButtons.Controls.Add(this.btnLzhImport, 1, 0);
+            this.pnlLzhButtons.Controls.Add(this.btnLzhExtract, 0, 0);
+            this.pnlLzhButtons.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlLzhButtons.Location = new System.Drawing.Point(3, 3);
+            this.pnlLzhButtons.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlLzhButtons.Name = "pnlLzhButtons";
+            this.pnlLzhButtons.RowCount = 1;
+            this.pnlLzhButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pnlLzhButtons.Size = new System.Drawing.Size(815, 32);
+            this.pnlLzhButtons.TabIndex = 2;
+            // 
+            // btnLzhImport
+            // 
+            this.btnLzhImport.AutoSize = true;
+            this.btnLzhImport.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnLzhImport.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnLzhImport.Location = new System.Drawing.Point(78, 4);
+            this.btnLzhImport.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLzhImport.Name = "btnLzhImport";
+            this.btnLzhImport.Size = new System.Drawing.Size(59, 24);
+            this.btnLzhImport.TabIndex = 1;
+            this.btnLzhImport.Text = "Import";
+            this.btnLzhImport.UseVisualStyleBackColor = true;
+            // 
+            // btnLzhExtract
+            // 
+            this.btnLzhExtract.AutoSize = true;
+            this.btnLzhExtract.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnLzhExtract.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnLzhExtract.Location = new System.Drawing.Point(4, 4);
+            this.btnLzhExtract.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLzhExtract.Name = "btnLzhExtract";
+            this.btnLzhExtract.Size = new System.Drawing.Size(66, 24);
+            this.btnLzhExtract.TabIndex = 0;
+            this.btnLzhExtract.Text = "Extract";
+            this.btnLzhExtract.UseVisualStyleBackColor = true;
+            this.btnLzhExtract.Click += new System.EventHandler(this.btnLzhExtract_Click);
             // 
             // frmMain
             // 
@@ -299,6 +342,9 @@
             this.tpCompression.ResumeLayout(false);
             this.tcCompression.ResumeLayout(false);
             this.tbLzh.ResumeLayout(false);
+            this.tbLzh.PerformLayout();
+            this.pnlLzhButtons.ResumeLayout(false);
+            this.pnlLzhButtons.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -330,7 +376,9 @@
         private System.Windows.Forms.ColumnHeader chLzhDecSize;
         private System.Windows.Forms.OpenFileDialog dlgOpenRom;
         private System.Windows.Forms.SaveFileDialog dlgSaveRom;
-        private System.Windows.Forms.ColumnHeader chLzhDestAddr;
+        private System.Windows.Forms.TableLayoutPanel pnlLzhButtons;
+        private System.Windows.Forms.Button btnLzhImport;
+        private System.Windows.Forms.Button btnLzhExtract;
     }
 }
 
